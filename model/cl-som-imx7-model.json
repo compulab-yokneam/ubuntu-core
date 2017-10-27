@@ -1,0 +1,11 @@
+{
+  "type": "model",
+  "authority-id": "86qmp4Sf9e76KipegVEcnnik4F6o4qBr",
+  "brand-id": "86qmp4Sf9e76KipegVEcnnik4F6o4qBr",
+  "series": "16",
+  "model": "cl-som-imx7",
+  "architecture": "armhf",
+  "gadget": "cl-som-imx7-gadget",
+  "kernel": "cl-som-imx7-kernel",
+  "timestamp": "2017-10-18T09:08:21+00:00"
+}

@@ -1,0 +1,21 @@
+type: model
+authority-id: 86qmp4Sf9e76KipegVEcnnik4F6o4qBr
+series: 16
+brand-id: 86qmp4Sf9e76KipegVEcnnik4F6o4qBr
+model: cl-som-imx7
+architecture: armhf
+gadget: cl-som-imx7-gadget
+kernel: cl-som-imx7-kernel
+timestamp: 2017-10-18T09:08:21+00:00
+sign-key-sha3-384: MuDr3zYMODLRZvhGGhdRABUh-7NG1AJIq1dXGRyq6A5QHAXBuQ0CutqaHFcqBH1O
+
+AcLBXAQAAQoABgUCWeielwAKCRBQcB9QQz0B74//D/0SlzUw581Nf80Imh9ZdeAoAvtZj3iHkIXU
+2867dM5929qI5FSiMkhi6bOyU5zXCdUYbW2x/z+xW1fcJZGag2IOO5EEG6KCvrAb28P+23gYiEnu
+H6nYZtdmatKdIaEbWSCE2EF9lwzFu2Le33/pRByrv3Il1/Y4313uRQ+PC7F5lMT6RQxiSle+gndX
+KXEORT2haA27T6+hfF1naKG2NX/hAKceAuyj8J0c+uoTkM2J3ZJTooxx97A8QYq70+uhmLAGeI8D
+GEowSrRMRKcvEAYXVHCz1Wch2RbiIL8pzpwI3t4aanz4nVTE95TCqTgwRwqOe398M8G85o12BK4G
+BM0mPcZVCAwEgV9IC/0956m/aIEN+wvnpgmRuStBmgW401teg4wLgYNJTnUGNC2p8y905k2Eimcn
+BnL4O+SOxxiUgC0qvTtjlFwtmsP0I4rCEn2cP434bz7ag/paMLDJSkXLBTqJ8zRe9UXr8HwTjhP2
+LDoNXe/lUI4/+QkseROu6V9j9JQoCHK3Y5XhZ6NwaCeF0a53uzQiblqslSrP5JGxCxJYKVi+EK0V
+j+9GinkIt9y3lau5QUf0qOOH8n3a09EPMIlS3EVUpC40uXKaOn9aFy7gaVe5jV6Wuj1IdnPG/7Wt
+mQueuN5i03N/EpcA4ZXF//997igDpdVmHBAdIFbUhA==

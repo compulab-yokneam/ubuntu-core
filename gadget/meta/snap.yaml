@@ -1,0 +1,7 @@
+name: cl-som-imx7-gadget
+version: 16.04-1
+summary: cl-som-imx7 platforms support package
+description: Support files for booting CompuLab cl-som-imx7 platforms
+type: gadget
+architectures:
+    - armhf

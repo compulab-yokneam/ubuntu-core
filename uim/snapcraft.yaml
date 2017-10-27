@@ -1,0 +1,27 @@
+name: cl-som-imx7-uim
+version: 1.1
+summary: ti uim
+description: ti uim
+architectures: [ armhf ]
+
+parts:
+    uim-bin:
+        source: git://git.ti.com/ti-bt/uim.git
+        plugin: make
+        make-parameters: ["CC=/usr/bin/arm-linux-gnueabihf-gcc"]
+    uim-script:
+        source: git://git.ti.com/ti-bt/uim.git
+        plugin: copy
+        prepare: chmod a+x scripts/uim-sysfs
+        files:
+             scripts/uim-sysfs: etc/init.d/uim-sysfs
+        install: sed -i 's/\/usr/\$SNAP\/usr/g' $SNAPCRAFT_PART_INSTALL/etc/init.d/uim-sysfs
+
+apps:
+   uim-sysfs:
+        command: etc/init.d/uim-sysfs start
+        stop-command: etc/init.d/uim-sysfs stop
+        daemon: forking
+   uim:
+        command: usr/sbin/uim
+        daemon: simple
