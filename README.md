@@ -32,6 +32,8 @@ Simply clone this repository:
 ~$ cd ubuntu-core
 ```
 
+### [Create device model file](./model#model-assertion)
+
 ### Full build
 
 In order to build the whole OS image, you just need to issue the following:
