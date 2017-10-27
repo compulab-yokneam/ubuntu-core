@@ -1,0 +1,11 @@
+gadget/boot-assets/
+gadget/uboot.conf
+gadget/uboot.env
+kernel/parts/
+kernel/prime/
+kernel/stage/
+uim/parts/
+uim/prime/
+uim/stage/
+*.snap
+*.img
