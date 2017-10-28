@@ -12,10 +12,11 @@ parts:
     uim-script:
         source: git://git.ti.com/ti-bt/uim.git
         plugin: copy
-        prepare: chmod a+x scripts/uim-sysfs
         files:
              scripts/uim-sysfs: etc/init.d/uim-sysfs
-        install: sed -i 's/\/usr/\$SNAP\/usr/g' $SNAPCRAFT_PART_INSTALL/etc/init.d/uim-sysfs
+        install: |
+            chmod a+x $SNAPCRAFT_PART_INSTALL/etc/init.d/uim-sysfs
+            sed -i 's/\/usr/\$SNAP\/usr/g' $SNAPCRAFT_PART_INSTALL/etc/init.d/uim-sysfs
 
 apps:
    uim-sysfs:
