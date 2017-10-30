@@ -17,11 +17,13 @@ $(IMAGE): kernel gadget uim
 
 image: $(IMAGE)
 
-clean:
+cleanfiles:
+	rm -f $(GADGETSNAP) $(KERNELSNAP) $(UIMSNAP) $(IMAGE)
+
+clean: cleanfiles
 	make --debug=b -f gadget.mk clean
 	make --debug=b -f kernel.mk clean
 	make --debug=b -f uim.mk clean
-	rm -f $(GADGETSNAP) $(KERNELSNAP) $(UIMSNAP) $(IMAGE)
 
 gadget:
 	make --debug=b -f gadget.mk
