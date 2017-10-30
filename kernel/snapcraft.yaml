@@ -42,6 +42,9 @@ parts:
              - imx7d-sbc-iot-imx7
              - imx7d-sbc-imx7
         build-packages: [bc, kmod, cpio]
+        install: |
+           mkimage -A arm -O Linux -T ramdisk -d $SNAPCRAFT_PART_INSTALL/initrd.img $SNAPCRAFT_PART_INSTALL/ramdisk.img
+           cp $SNAPCRAFT_PART_INSTALL/ramdisk.img $SNAPCRAFT_PART_INSTALL/initrd.img
 
     firmware:
         source: git://git.ti.com/wilink8-wlan/linux-firmware.git
