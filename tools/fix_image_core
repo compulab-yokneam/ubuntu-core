@@ -1,0 +1,92 @@
+#/bin/bash
+
+# Fixes the image boot.scr core_rev variable
+# Take the Ubuntu Core revision from the core_xxxx.snap file
+#
+# Run the script this way:
+# IMAGE=<cl-som-imx7.img> ./script-name
+#
+# If invoked w/out the IMAGE then gets assumed that
+# the image file is in CWD
+
+set +e
+
+if [[ -z "${IMAGE}" ]];then
+IMAGE=cl-som-imx7.img
+fi
+
+if [[ ! -f ${IMAGE} ]];then
+cat << eom
+	Image file: ${IMAGE} is not found
+	exiting ...
+eom
+exit 2
+fi
+
+file_converter() {
+
+local size=$(stat --printf="%s" ${FILE})
+local ifile=${FILE}
+
+local i=0
+local pattern="setenv"
+local pattlen=${#pattern}
+while [ 1 ]; do
+char=$(dd if=${ifile} skip=$i bs=1 count=${pattlen} 2>/dev/null)
+[[ x"${char}" = x"${pattern}" ]] && break
+[[ $i = $size ]] && break
+((i++))
+done
+
+# The pattern is at a correct offset
+# or pattern has not bee found
+# then skip this code
+[[ $i = 0 || $i = ${size} ]] && return
+
+ofile=$(mktemp -u)
+dd if=${ifile} skip=$i bs=1 2>/dev/null of=${ofile}
+mv ${ofile} ${ifile}
+}
+
+mount_image() {
+loop=$(sudo losetup --show --find ${IMAGE})
+sudo partx --add ${loop}
+sudo mount ${loop}p1 ${mpoint1}
+sudo mount ${loop}p2 ${mpoint2}
+}
+
+unmount_image() {
+sudo umount ${mpoint2}
+sudo umount ${mpoint1}
+sudo partx --delete ${loop}
+sudo losetup --detach ${loop}
+}
+
+mpoint1=$(mktemp --directory)
+mpoint2=$(mktemp --directory)
+FILE=$(mktemp --dry-run)
+
+mount_image
+
+core=$(basename $(ls ${mpoint2}/system-data/var/lib/snapd/snaps/core_*.snap) | tr -d "core_",".snap")
+
+cp ${mpoint1}/boot.scr ${FILE}
+# Remove an old script header
+file_converter
+# Set the correct core_rev number
+sed -i "s/\(core_rev=.*$\)/core_rev=${core}/g" ${FILE}
+sudo mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "boot script" -d ${FILE} ${mpoint1}/boot.scr 2>/dev/null
+
+[[ -n ${DUMP} ]] && cat ${FILE}
+
+unmount_image
+
+inode=$(stat --printf="%i" ${IMAGE})
+old_files=$(ls -i | awk -v inode=${inode} '($0~inode)&&($0=$NF)' ORS=" ")
+
+for _file in ${old_files};do
+[[ ${_file} != ${IMAGE} ]] && sudo rm -rf ${_file}
+done
+
+sudo rm -rf ${mpoint1} ${mpoint2} ${FILE}
+sudo ln ${IMAGE} ${IMAGE}.core_${core}
