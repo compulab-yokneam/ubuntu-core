@@ -36,51 +36,26 @@ Simply clone this repository:
 
 ### Full build
 
-In order to build the whole OS image, you just need to issue the following:
+In order to build the whole OS image, just issue the following:
 ```
 ~/ubuntu-core$ make
 ```
-
 The output file should be named `cl-som-imx7.img`.
 
-You can then simply flash it using `pv` and `dd`.
+### Fix `core` revision number
+```
+~/ubuntu-core$ IMAGE=cl-som-imx7.img ./tools/fix_image_core
+```
+
+### Create bootable media
+Make use of `pv` and `dd` in order to flash the image onto an sd/mmc card
 
 ```
 ~/ubuntu-core$ pv cl-som-imx7.img | sudo dd of=/dev/sdX bs=1M
 ```
 
-### Gadget build
-
-If you just wish to build the `gadget`:
-```
-~/ubuntu-core$ make gadget
-```
-
-### Kernel build
-
-If you just wish to build the `kernel`:
-```
-~/ubuntu-core$ make kernel
-```
-
-### Image generation
-
-If you re-built the `kernel` or the `gadget` manually, you can simply generate the image:
-```
-~/ubuntu-core$ make image
-```
 ### Prepare for the very 1-st boot
-#### Get core revision version
-This command generates a string command that has to get issued in the device U-Boot at the very 1-st device boot.
-```
-~/ubuntu-core$ awk '(/core/)&&($0="setenv core_rev="$2)' seed.manifest
-```
-#### Update boot environent
-Copy the generated string and paste it while in U-Boot prompt.
-```
-CL-SOM-iMX7 # setenv core_rev=3323; saveenv
-```
-Update the device `bootcmd`
+#### Update the device `bootcmd`
 ```
 CL-SOM-iMX7 # setenv bootcmd 'mmc dev 0; load mmc 0 ${loadaddr} boot.scr; source ${loadaddr}'
 CL-SOM-iMX7 # saveenv; reset
