@@ -1,11 +1,9 @@
-# Parameters
 setenv tty "ttymxc0,115200"
 setenv mmcdev 0
 setenv rdaddr 0x82000000
 setenv loadaddr 0x80800000
 setenv fdtaddr 0x83000000
 setenv envaddr 0x83000000
-setenv bootargs_ramdisk "root=/dev/ram0 rw ramdisk_size=16384 console=$tty vram=16M init=/init"
 
 if itest.s "x" == "x${core_rev}" ; then
  core_rev=3306
@@ -21,14 +19,12 @@ setenv kernel cl-som-imx7-kernel_${kernel_rev}.snap/kernel.img
 setenv snap_core core_${core_rev}.snap
 setenv snap_kernel cl-som-imx7-kernel_${kernel_rev}.snap
 
-setenv bootargs ${bootargs} console=${console},115200 vmalloc=400M consoleblank=0 rootwait fixrtc
+setenv bootargs ${bootargs} console=${console},115200 vmalloc=400M consoleblank=0 rootwait
 setenv bootargs ${bootargs} root=/dev/disk/by-label/writable
 setenv snappy_cmdline net.ifnames=0 init=/lib/systemd/systemd ro panic=-1 snap_core=${snap_core} snap_kernel=${snap_kernel}
 setenv bootargs ${bootargs} ${snappy_cmdline}
 
-# Script start
 load mmc ${mmcdev} ${fdtaddr} ${fdtfile}
 load mmc ${mmcdev} ${loadaddr} ${kernel}
 load mmc ${mmcdev} ${rdaddr} ${ramimg} && setenv rsize ${filesize}
-echo "Starting modulle installation ..."
 bootz ${loadaddr} ${rdaddr}:${rsize} ${fdtaddr}
