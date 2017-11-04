@@ -4,8 +4,7 @@ This repository contains every needed to build your own Snappy Ubuntu Core OS im
 
 ## Prebuit image
 We'd suggets try a prebult image prior to creating the entire buld environment.
-A prebuld image location is at: 
-https://github.com/compulab-yokneam/ubuntu-core-bin/tree/master#ubuntu-core-bin
+A prebuld image location is at:  [ubuntu-core-bin](https://github.com/compulab-yokneam/ubuntu-core-bin/tree/master#ubuntu-core-bin)
 
 ## Build requirements
 
