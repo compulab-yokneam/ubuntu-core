@@ -2,6 +2,11 @@
 
 This repository contains every needed to build your own Snappy Ubuntu Core OS image for **CompuLab cl-som-imx7** platforms.
 
+## Prebuit image
+We'd suggets try a prebult image prior to creating the entire buld environment.
+A prebuld image location is at: 
+https://github.com/compulab-yokneam/ubuntu-core-bin/tree/master#ubuntu-core-bin
+
 ## Build requirements
 
 First of all, it is highly recommended to build from **Ubuntu 16.04** or later. Although there are solutions for different OS flavours, some tools are limited to Ubuntu for now.
