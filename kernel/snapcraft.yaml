@@ -9,7 +9,7 @@ parts:
     kernel:
         plugin: kernel
         source: https://github.com/compulab-yokneam/cl-som-imx7.git
-        source-branch: v4.1.15-cl-som-imx7-4.0 
+        source-branch: devel 
         source-type: git
         kdefconfig: [compulab_imx7_defconfig]
         kconfigs:
