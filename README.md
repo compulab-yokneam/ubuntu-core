@@ -65,3 +65,20 @@ CL-SOM-iMX7 # setenv bootcmd 'mmc dev 0; load mmc 0 ${loadaddr} boot.scr; source
 CL-SOM-iMX7 # saveenv; reset
 ```
 Let the device boot up and evaluate Ubuntu Core.
+
+### A known build issue
+#### [Snapcraft issue during initrd driver generation](https://bugs.launchpad.net/snapcraft/+bug/1739400)
+#### Fix
+```
+--- /usr/lib/python3/dist-packages/snapcraft/plugins/kernel-orig.py	2018-01-12 11:15:04.330170492 +0200
++++ /usr/lib/python3/dist-packages/snapcraft/plugins/kernel.py	2018-01-12 11:16:39.941153876 +0200
+@@ -237,7 +237,7 @@
+
+         with tempfile.TemporaryDirectory() as temp_dir:
+             subprocess.check_call([
+-                'unsquashfs', self.os_snap, os.path.dirname(initrd_path)],
++                'unsquashfs', self.os_snap, os.path.dirname(initrd_path), 'boot'],
+                 cwd=temp_dir)
+
+             tmp_initrd_path = os.path.join(
+```
