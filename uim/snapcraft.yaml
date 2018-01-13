@@ -11,12 +11,14 @@ parts:
         make-parameters: ["CC=/usr/bin/arm-linux-gnueabihf-gcc"]
     uim-script:
         source: git://git.ti.com/ti-bt/uim.git
-        plugin: copy
-        files:
-             scripts/uim-sysfs: etc/init.d/uim-sysfs
+        plugin: dump
         install: |
-            chmod a+x $SNAPCRAFT_PART_INSTALL/etc/init.d/uim-sysfs
+            install -d $SNAPCRAFT_PART_INSTALL/etc/init.d/
+            install -m 0755 $SNAPCRAFT_PART_INSTALL/scripts/uim-sysfs $SNAPCRAFT_PART_INSTALL/etc/init.d/uim-sysfs
             sed -i 's/\/usr/\$SNAP\/usr/g' $SNAPCRAFT_PART_INSTALL/etc/init.d/uim-sysfs
+        stage:
+           - etc/*
+           - usr/*
 
 apps:
    uim-sysfs:
