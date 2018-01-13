@@ -13,7 +13,7 @@ parts:
         source-type: git
         kdefconfig: [compulab_imx7_defconfig]
         kconfigs:
-            - CONFIG_LOCALVERSION="-uc-0"
+            - CONFIG_LOCALVERSION="-uc-1"
             - CONFIG_DEBUG_INFO=n
             - CONFIG_SQUASHFS=m
             - CONFIG_DEVPTS_MULTIPLE_INSTANCES=y
