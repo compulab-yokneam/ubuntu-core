@@ -9,7 +9,7 @@ parts:
     kernel:
         plugin: kernel
         source: https://github.com/compulab-yokneam/cl-som-imx7.git
-        source-branch: devel 
+        source-branch: devel
         source-type: git
         kdefconfig: [compulab_imx7_defconfig]
         kconfigs:
@@ -48,13 +48,17 @@ parts:
 
     firmware:
         source: git://git.ti.com/wilink8-wlan/linux-firmware.git
-        plugin: copy
-        files:
+        plugin: dump
+        organize:
            LICENCE.ti-connectivity: firmware/LICENCE.ti-connectivity
            ti-connectivity: firmware/ti-connectivity
+        stage:
+           - firmware/*
 
     firmware-bt:
         source: git://git.ti.com/ti-bt/service-packs.git
-        plugin: copy
-        files:
+        plugin: dump
+        organize:
              initscripts/TIInit_11.8.32.bts: firmware/ti-connectivity/TIInit_11.8.32.bts
+        stage:
+           - firmware/*
