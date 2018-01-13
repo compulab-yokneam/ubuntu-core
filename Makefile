@@ -21,17 +21,17 @@ cleanfiles:
 	rm -f $(GADGETSNAP) $(KERNELSNAP) $(UIMSNAP) $(IMAGE)
 
 clean: cleanfiles
-	make --debug=b -f gadget.mk clean
-	make --debug=b -f kernel.mk clean
-	make --debug=b -f uim.mk clean
+	make -f gadget.mk clean
+	make -f kernel.mk clean
+	make -f uim.mk clean
 
 gadget:
-	make --debug=b -f gadget.mk
+	make -f gadget.mk
 
 kernel:
-	make --debug=b -f kernel.mk
+	make -f kernel.mk
 
 uim:
-	make --debug=b -f uim.mk
+	make -f uim.mk
 
 .PHONY: build gadget kernel uim clean
