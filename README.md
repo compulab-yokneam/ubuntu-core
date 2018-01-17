@@ -52,7 +52,9 @@ The output file should be named `cl-som-imx7.img`.
 ```
 
 ### Create bootable media
-Make use of `pv` and `dd` in order to flash the image onto an sd/mmc card
+Supported devices: `sd/mmc` `usb`
+
+Make use of `pv` and `dd` in order to flash the image onto a boot device
 
 ```
 ~/ubuntu-core$ pv cl-som-imx7.img | sudo dd of=/dev/sdX bs=1M
@@ -60,8 +62,16 @@ Make use of `pv` and `dd` in order to flash the image onto an sd/mmc card
 
 ### Prepare for the very 1-st boot
 #### Update the device `bootcmd`
+##### sd/mmc
 ```
+CL-SOM-iMX7 # setenv boot_media mmc
 CL-SOM-iMX7 # setenv bootcmd 'mmc dev 0; load mmc 0 ${loadaddr} boot.scr; source ${loadaddr}'
+CL-SOM-iMX7 # saveenv; reset
+```
+##### usb
+```
+CL-SOM-iMX7 # setenv boot_media usb
+CL-SOM-iMX7 # setenv bootcmd 'usb start; load usb 0 ${loadaddr} boot.scr; source ${loadaddr}'
 CL-SOM-iMX7 # saveenv; reset
 ```
 Let the device boot up and evaluate Ubuntu Core.
