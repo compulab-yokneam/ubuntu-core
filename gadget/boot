@@ -1,5 +1,5 @@
 setenv tty "ttymxc0,115200"
-setenv mmcdev 0
+setenv dev 0
 setenv rdaddr 0x82000000
 setenv loadaddr 0x80800000
 setenv fdtaddr 0x83000000
@@ -10,6 +10,15 @@ if itest.s "x" == "x${core_rev}" ; then
 fi
 if itest.s "x" == "x${kernel_rev}" ; then
  kernel_rev=x1
+fi
+
+if itest.s "xusb" == "x${boot_media}"
+then
+ boot_media_init="usb start"
+ boot_media=usb
+else
+ boot_media_init="mmc dev ${dev}"
+ boot_media=mmc
 fi
 
 setenv ramimg cl-som-imx7-kernel_${kernel_rev}.snap/initrd.img
@@ -24,7 +33,8 @@ setenv bootargs ${bootargs} root=/dev/disk/by-label/writable
 setenv snappy_cmdline net.ifnames=0 init=/lib/systemd/systemd ro panic=-1 snap_core=${snap_core} snap_kernel=${snap_kernel}
 setenv bootargs ${bootargs} ${snappy_cmdline}
 
-load mmc ${mmcdev} ${fdtaddr} ${fdtfile}
-load mmc ${mmcdev} ${loadaddr} ${kernel}
-load mmc ${mmcdev} ${rdaddr} ${ramimg} && setenv rsize ${filesize}
+${boot_media_init}
+load ${boot_media} ${dev} ${fdtaddr} ${fdtfile}
+load ${boot_media} ${dev} ${loadaddr} ${kernel}
+load ${boot_media} ${dev} ${rdaddr} ${ramimg} && setenv rsize ${filesize}
 bootz ${loadaddr} ${rdaddr}:${rsize} ${fdtaddr}
