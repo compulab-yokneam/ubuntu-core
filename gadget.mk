@@ -18,7 +18,7 @@ preload: u-boot
 	@if [ ! -f $(GADGET_DIR)/uboot.conf ]; then ln -s uboot.env $(GADGET_DIR)/uboot.conf; fi
 
 snappy: preload
-	snapcraft --target-arch armhf snap gadget
+	snapcraft --target-arch armhf pack gadget
 
 build: u-boot preload snappy
 
