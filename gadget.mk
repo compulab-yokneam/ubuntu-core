@@ -8,6 +8,7 @@ clean:
 
 u-boot:
 	@if [ ! -d $(GADGET_DIR)/boot-assets ] ; then mkdir $(GADGET_DIR)/boot-assets; fi
+	cp $(GADGET_DIR)/boot $(GADGET_DIR)/boot-assets/boot.src
 	mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "boot script" -d $(GADGET_DIR)/boot $(GADGET_DIR)/boot-assets/boot.scr
 	@if [ -f $(MANIFEST) ] ; then \
 	awk '(/core/)&&($$0="core_rev="$$2)' $(MANIFEST) > $(GADGET_DIR)/boot-assets/boot.env; \
