@@ -48,7 +48,7 @@ The output file should be named `cl-som-imx7.img`.
 
 ### Fix `core` revision number
 ```
-~/ubuntu-core$ IMAGE=cl-som-imx7.img ./tools/fix_image_core
+~/ubuntu-core$ make fix
 ```
 
 ### Create bootable media
