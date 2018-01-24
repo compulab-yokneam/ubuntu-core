@@ -17,6 +17,9 @@ $(IMAGE): kernel gadget uim
 
 image: $(IMAGE)
 
+fix:
+	bash ./tools/fix_image_core
+
 cleanfiles:
 	rm -f $(GADGETSNAP) $(KERNELSNAP) $(UIMSNAP) $(IMAGE)
 
