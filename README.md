@@ -64,15 +64,21 @@ Make use of `pv` and `dd` in order to flash the image onto a boot device
 #### Update the device `bootcmd`
 ##### sd/mmc
 ```
-CL-SOM-iMX7 # setenv boot_media mmc
-CL-SOM-iMX7 # setenv bootcmd 'mmc dev 0; load mmc 0 ${loadaddr} boot.scr; source ${loadaddr}'
-CL-SOM-iMX7 # saveenv; reset
+setenv boot_media mmc; setenv dev 0
+setenv bootcmd 'mmc dev ${dev}; load mmc ${dev} ${loadaddr} boot.scr; source ${loadaddr}'
+saveenv; reset
+```
+##### emmc
+```
+setenv boot_media mmc; setenv dev 1
+setenv bootcmd 'mmc dev ${dev}; load mmc ${dev} ${loadaddr} boot.scr; source ${loadaddr}'
+saveenv; reset
 ```
 ##### usb
 ```
-CL-SOM-iMX7 # setenv boot_media usb
-CL-SOM-iMX7 # setenv bootcmd 'usb start; load usb 0 ${loadaddr} boot.scr; source ${loadaddr}'
-CL-SOM-iMX7 # saveenv; reset
+setenv boot_media usb
+setenv bootcmd 'usb start; load usb 0 ${loadaddr} boot.scr; source ${loadaddr}'
+saveenv; reset
 ```
 Let the device boot up and evaluate Ubuntu Core.
 
