@@ -68,18 +68,43 @@ setenv boot_media mmc; setenv dev 0
 setenv bootcmd 'mmc dev ${dev}; load mmc ${dev} ${loadaddr} boot.scr; source ${loadaddr}'
 saveenv; reset
 ```
-##### emmc
-```
-setenv boot_media mmc; setenv dev 1
-setenv bootcmd 'mmc dev ${dev}; load mmc ${dev} ${loadaddr} boot.scr; source ${loadaddr}'
-saveenv; reset
-```
 ##### usb
 ```
 setenv boot_media usb
 setenv bootcmd 'usb start; load usb 0 ${loadaddr} boot.scr; source ${loadaddr}'
 saveenv; reset
 ```
+### How to install the image onto the eMMC
+#### Prerequirements 
+* Prepare an `NFS` server with a `configured NFS export`.
+* Copy the `cl-som-imx7.img` into the `configured NFS export`.
+* Make sure that the `cl-som-imx7` device and the `NFS server` connsected to the same `LAN`.
+* Make use of the 1-st NIC of the `CompuLab SB-SOM` board. It is the `P21` connector.
+#### Make the device bootup onto the `initramfs`
+```
+setenv core_rev 1234; setenv boot_media mmc; setenv dev 0
+mmc dev ${dev}; load mmc ${dev} ${loadaddr} boot.scr; source ${loadaddr}
+```
+* As soon as `(initramfs)` turns out, issue:
+```
+dhclient eth0
+mkdir /media
+mount -o nolock nfs-server-ip:/path/to/nfs-export /media
+dd if=/media/cl-som-imx7.img of=/dev/mmcblk2
+```
+* Wait for the `dd` success status with information about coppied blocks:
+```
+1048576+0 records in
+1048576+0 records out
+```
+* Reboot the devie & stop in `U-Boot`.
+* Update the device `bootcmd`:
+```
+setenv boot_media mmc; setenv dev 1
+setenv bootcmd 'mmc dev ${dev}; load mmc ${dev} ${loadaddr} boot.scr; source ${loadaddr}'
+saveenv; reset
+```
+
 Let the device boot up and evaluate Ubuntu Core.
 
 ### A known build issue
