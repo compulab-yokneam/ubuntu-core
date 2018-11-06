@@ -1,5 +1,5 @@
 GADGETSNAP:= cl-som-imx7-gadget_16.04-1_armhf.snap
-KERNELSNAP:= cl-som-imx7-kernel_4.1.15-1_armhf.snap
+KERNELSNAP:= cl-som-imx7-kernel_4.9.11-1_armhf.snap
 UIMSNAP:= cl-som-imx7-uim_1.1_armhf.snap
 IMAGE:= cl-som-imx7.img
 

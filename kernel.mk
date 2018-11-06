@@ -1,5 +1,5 @@
 DIR := kernel
-SNAP:= $(DIR)/cl-som-imx7-kernel_4.1.15-1_armhf.snap
+SNAP:= $(DIR)/cl-som-imx7-kernel_4.9.11-1_armhf.snap
 OUTPUT_DIR := $(PWD)
 
 all: build
@@ -12,7 +12,7 @@ snapclean:
 
 $(SNAP):
 	cd $(DIR); snapcraft --target-arch armhf snap
-	
+
 snap:	$(SNAP)
 	mv $(SNAP) $(OUTPUT_DIR)
 

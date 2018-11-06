@@ -1,5 +1,5 @@
 name: cl-som-imx7-kernel
-version: 4.1.15-1
+version: 4.9.11-1
 summary: CompuLab Deveices kernel for cl-som-imx7
 description: CompuLab Deveices kernel for cl-som-imx7
 type: kernel
@@ -8,15 +8,14 @@ architectures: [ armhf ]
 parts:
     kernel:
         plugin: kernel
-        source: https://github.com/compulab-yokneam/cl-som-imx7.git
-        source-branch: devel
+        source: https://github.com/compulab-yokneam/linux-nxp-compulab
+        source-branch: v4.9.11-cl-som-imx7-5.1
         source-type: git
         kdefconfig: [compulab_imx7_defconfig]
         kconfigs:
-            - CONFIG_LOCALVERSION="-uc-1"
+            - CONFIG_LOCALVERSION="-uc-2"
             - CONFIG_DEBUG_INFO=n
             - CONFIG_SQUASHFS=m
-            - CONFIG_DEVPTS_MULTIPLE_INSTANCES=y
             - CONFIG_SQUASHFS_LZ4=y
             - CONFIG_SQUASHFS_LZO=y
             - CONFIG_SQUASHFS_XZ=y
@@ -29,7 +28,6 @@ parts:
             - CONFIG_CGROUP_CPUACCT=y
             - CONFIG_MEMCG=y
             - CONFIG_MEMCG_SWAP=y
-            - CONFIG_MEMCG_KMEM=y
             - CONFIG_CGROUP_PERF=y
             - CONFIG_BLK_CGROUP=y
             - CONFIG_DEBUG_BLK_CGROUP=y
@@ -60,5 +58,13 @@ parts:
         plugin: dump
         organize:
              initscripts/TIInit_11.8.32.bts: firmware/ti-connectivity/TIInit_11.8.32.bts
+        stage:
+           - firmware/*
+
+    firmware-wifi:
+        source: git://git.ti.com/wilink8-wlan/18xx-ti-utils.git
+        plugin: dump
+        organize:
+             wlconf/wl18xx-conf-default.bin: firmware/ti-connectivity/wl18xx-conf.bin
         stage:
            - firmware/*
