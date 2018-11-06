@@ -1,0 +1,19 @@
+name: cl-som-imx7-btwilink
+version: 1.1
+summary: btwilink
+description: btwilink
+architectures: [ armhf ]
+
+parts:
+    btwilink-script:
+        plugin: dump
+        source: https://github.com/compulab-yokneam/ubuntu-core-bsp.git
+        organize:
+           btwilink:  etc/init.d/btwilink
+        stage:
+           - etc/init.d/btwilink
+
+apps:
+   btwilink:
+        command: etc/init.d/btwilink start
+        daemon: forking

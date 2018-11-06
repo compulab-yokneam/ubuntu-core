@@ -1,18 +1,20 @@
 GADGETSNAP:= cl-som-imx7-gadget_16.04-1_armhf.snap
 KERNELSNAP:= cl-som-imx7-kernel_4.9.11-1_armhf.snap
 UIMSNAP:= cl-som-imx7-uim_1.1_armhf.snap
+BTWILINKSNAP:= cl-som-imx7-btwilink_1.1_armhf.snap
 IMAGE:= cl-som-imx7.img
 
 all: build
 
-build: kernel gadget uim image
+build: kernel gadget uim btwilink image
 
-$(IMAGE): kernel gadget uim
+$(IMAGE): kernel gadget uim btwilink
 	ubuntu-image -c edge --debug --image-size 512M \
 	--extra-snaps snapweb \
 	--extra-snaps $(GADGETSNAP) \
 	--extra-snaps $(KERNELSNAP) \
 	--extra-snaps $(UIMSNAP) \
+	--extra-snaps $(BTWILINKSNAP) \
 	model/cl-som-imx7.model 
 
 image: $(IMAGE)
@@ -21,12 +23,13 @@ fix:
 	bash ./tools/fix_image_core
 
 cleanfiles:
-	rm -f $(GADGETSNAP) $(KERNELSNAP) $(UIMSNAP) $(IMAGE)
+	rm -f $(GADGETSNAP) $(KERNELSNAP) $(UIMSNAP) $(BTWILINKSNAP) $(IMAGE)
 
 clean: cleanfiles
 	make -f gadget.mk clean
 	make -f kernel.mk clean
 	make -f uim.mk clean
+	make -f btwilink.mk clean
 
 gadget:
 	make -f gadget.mk
@@ -37,4 +40,7 @@ kernel:
 uim:
 	make -f uim.mk
 
-.PHONY: build gadget kernel uim clean
+btwilink:
+	make -f btwilink.mk
+
+.PHONY: build gadget kernel uim btwilink clean
