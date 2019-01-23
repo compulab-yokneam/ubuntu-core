@@ -1,4 +1,5 @@
 DIR := btwilink
+SNAP_AMD:= $(DIR)/cl-som-imx7-btwilink_1.1_amd64.snap
 SNAP:= $(DIR)/cl-som-imx7-btwilink_1.1_armhf.snap
 OUTPUT_DIR := $(PWD)
 
@@ -12,6 +13,7 @@ snapclean:
 
 $(SNAP):
 	cd $(DIR); snapcraft snap
+	mv $(SNAP_AMD) $(SNAP)
 
 snap:	$(SNAP)
 	mv $(SNAP) $(OUTPUT_DIR)
