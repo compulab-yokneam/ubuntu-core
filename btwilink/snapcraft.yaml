@@ -2,7 +2,9 @@ name: cl-som-imx7-btwilink
 version: 1.1
 summary: btwilink
 description: btwilink
-architectures: [ armhf ]
+architectures: [ all ]
+confinement: strict
+grade: stable
 
 parts:
     btwilink-script:
