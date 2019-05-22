@@ -5,7 +5,9 @@
   "series": "16",
   "model": "cl-som-imx7",
   "architecture": "armhf",
+  "base": "core18",
+  "display-name": "Ubuntu Core 18 (iot-gate-imx7)",
   "gadget": "cl-som-imx7-gadget",
   "kernel": "cl-som-imx7-kernel",
-  "timestamp": "2017-10-18T09:08:21+00:00"
+  "timestamp": "2019-05-22T09:40:59+00:00"
 }
