@@ -5,3 +5,4 @@ description: Support files for booting CompuLab cl-som-imx7 platforms
 type: gadget
 architectures:
     - armhf
+base: core18

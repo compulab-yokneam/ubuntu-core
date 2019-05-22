@@ -29,7 +29,7 @@ setenv ramimg cl-som-imx7-kernel_${kernel_rev}.snap/initrd.img
 setenv fdtfile cl-som-imx7-kernel_${kernel_rev}.snap/dtbs/imx7d-sbc-iot-imx7.dtb
 setenv kernel cl-som-imx7-kernel_${kernel_rev}.snap/kernel.img
 
-setenv snap_core core_${core_rev}.snap
+setenv snap_core core18_${core_rev}.snap
 setenv snap_kernel cl-som-imx7-kernel_${kernel_rev}.snap
 
 setenv bootargs ${bootargs} console=${console},115200 vmalloc=400M consoleblank=0 rootwait
