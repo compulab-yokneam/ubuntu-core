@@ -1,7 +1,7 @@
 GADGETSNAP:= cl-som-imx7-gadget_16.04-1_armhf.snap
 KERNELSNAP:= cl-som-imx7-kernel_4.9.11-1_armhf.snap
-UIMSNAP:= cl-som-imx7-uim_1.1_armhf.snap
-BTWILINKSNAP:= cl-som-imx7-btwilink_1.1_armhf.snap
+UIMSNAP:= cl-som-imx7-uim_1.1_all.snap
+BTWILINKSNAP:= cl-som-imx7-btwilink_1.1_all.snap
 IMAGE:= cl-som-imx7.img
 
 all: build
@@ -9,12 +9,11 @@ all: build
 build: kernel gadget uim btwilink image
 
 $(IMAGE): kernel gadget uim btwilink
-	ubuntu-image -c edge --debug --image-size 512M \
-	--extra-snaps snapweb \
-	--extra-snaps $(GADGETSNAP) \
-	--extra-snaps $(KERNELSNAP) \
-	--extra-snaps $(UIMSNAP) \
-	--extra-snaps $(BTWILINKSNAP) \
+	ubuntu-image snap --debug --image-size 320M \
+	--snap $(GADGETSNAP) \
+	--snap $(KERNELSNAP) \
+	--snap $(BTWILINKSNAP) \
+	--snap $(UIMSNAP) \
 	model/cl-som-imx7.model 
 
 image: $(IMAGE)
