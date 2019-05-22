@@ -43,7 +43,7 @@ FILE=$(mktemp --dry-run)
 
 mount_image
 
-core=$(basename $(ls ${mpoint2}/system-data/var/lib/snapd/snaps/core_*.snap) | tr -d "core_",".snap")
+core=$(basename $(ls ${mpoint2}/system-data/var/lib/snapd/snaps/core18_*.snap) | tr -d "core18_",".snap")
 
 # Make use of the boot script src from inside the image
 # This file copied by the gadget build.
