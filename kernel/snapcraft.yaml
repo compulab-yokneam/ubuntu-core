@@ -9,7 +9,7 @@ parts:
     kernel:
         plugin: kernel
         source: https://github.com/compulab-yokneam/linux-nxp-compulab
-        source-branch: v4.9.11-cl-som-imx7-5.1
+        source-branch: v4.9.11-cl-som-imx7-5.1_docker
         source-type: git
         kdefconfig: [compulab_imx7_defconfig]
         kconfigs:
