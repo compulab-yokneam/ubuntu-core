@@ -9,7 +9,9 @@ all: build
 build: kernel gadget uim btwilink image
 
 $(IMAGE): kernel gadget uim btwilink
-	ubuntu-image snap --debug --image-size 320M \
+	ubuntu-image snap --debug --image-size 512M \
+	--snap docker \
+	--snap bluez \
 	--snap $(GADGETSNAP) \
 	--snap $(KERNELSNAP) \
 	--snap $(BTWILINKSNAP) \
