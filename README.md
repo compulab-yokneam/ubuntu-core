@@ -107,6 +107,22 @@ saveenv; reset
 
 Let the device boot up and evaluate Ubuntu Core.
 
+### Install snap Packages
+#### Docker
+```
+sudo snap install docker
+```
+#### BlueZ
+```
+sudo snap install bluez
+```
+#### CompuLab Packages
+* Copy the packages files to the device: cl-som-imx7-btwilink_1.1_all.snap, cl-som-imx7-uim_1.1_all.snap
+* Use the following commands for installation:
+```
+sudo snap install cl-som-imx7-btwilink_1.1_all.snap –devmode
+sudo snap install cl-som-imx7-uim_1.1_all.snap --devmode
+```
 ### A known build issue
 #### [Snapcraft issue during initrd driver generation](https://bugs.launchpad.net/snapcraft/+bug/1739400)
 #### Fix
