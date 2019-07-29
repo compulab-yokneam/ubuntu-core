@@ -9,7 +9,7 @@ all: build
 build: kernel gadget uim btwilink image
 
 $(IMAGE): kernel gadget uim btwilink
-	ubuntu-image snap --debug --image-size 512M \
+	ubuntu-image snap --debug --channel edge --image-size 512M \
 	--snap $(GADGETSNAP) \
 	--snap $(KERNELSNAP) \
 	model/cl-som-imx7.model 
