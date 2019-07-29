@@ -107,7 +107,7 @@ saveenv; reset
 
 Let the device boot up and evaluate Ubuntu Core.
 
-### Install snap Packages
+### Install snap packages
 #### Docker
 ```
 sudo snap install docker
@@ -116,26 +116,26 @@ sudo snap install docker
 ```
 sudo snap install bluez
 ```
-#### CompuLab Packages
+#### CompuLab packages
 * Copy the packages files to the device: cl-som-imx7-btwilink_1.1_all.snap, cl-som-imx7-uim_1.1_all.snap
 * Use the following commands for installation:
 ```
 sudo snap install cl-som-imx7-btwilink_1.1_all.snap --devmode
 sudo snap install cl-som-imx7-uim_1.1_all.snap --devmode
 ```
-### A known build issue
-#### [Snapcraft issue during initrd driver generation](https://bugs.launchpad.net/snapcraft/+bug/1739400)
-#### Fix
+### Validate installed snap packages
+* Issue `snap list` in order to display a summary of snaps installed in the current system:
 ```
---- /usr/lib/python3/dist-packages/snapcraft/plugins/kernel-orig.py	2018-01-12 11:15:04.330170492 +0200
-+++ /usr/lib/python3/dist-packages/snapcraft/plugins/kernel.py	2018-01-12 11:16:39.941153876 +0200
-@@ -237,7 +237,7 @@
+snap list
+Name                  Version     Rev   Tracking  Publisher   Notes
+bluez                 5.47-3      167   stable    canonical✓  -
+cl-som-imx7-btwilink  1.1         x1    -         -           devmode
+cl-som-imx7-gadget    16.04-1     x1    -         -           gadget
+cl-som-imx7-kernel    4.9.11-1    x1    -         -           kernel
+cl-som-imx7-uim       1.1         x1    -         -           devmode
+core                  16-2.39.3   7274  stable    canonical✓  core
+core18                20190709    1069  stable    canonical✓  base
+docker                18.06.1-ce  387   stable    canonical✓  -
+snapd                 2.39.2      3652  stable    canonical✓  snapd
 
-         with tempfile.TemporaryDirectory() as temp_dir:
-             subprocess.check_call([
--                'unsquashfs', self.os_snap, os.path.dirname(initrd_path)],
-+                'unsquashfs', self.os_snap, os.path.dirname(initrd_path), 'boot'],
-                 cwd=temp_dir)
-
-             tmp_initrd_path = os.path.join(
 ```
