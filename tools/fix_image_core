@@ -43,7 +43,7 @@ FILE=$(mktemp --dry-run)
 
 mount_image
 
-core=$(basename $(ls ${mpoint2}/system-data/var/lib/snapd/snaps/core18_*.snap) | awk '(gsub(/core18_/,"")&&gsub(/\.snap/,""))')
+core=$(basename $(ls ${mpoint2}/system-data/var/lib/snapd/snaps/core18_*.snap) | sed 's/core[0-9]*_\([0-9]*\)\.snap/\1/')
 
 # Make use of the boot script src from inside the image
 # This file copied by the gadget build.
